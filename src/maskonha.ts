@@ -23,7 +23,7 @@ export class Maskonha {
    * 
    * É possível customizar os caracteres da máscara através do parâmetro de configurações.
    */
-  static mask(value, pattern, options = {}) {
+  static mask(value: string, pattern: string, options: MaskonhaOptions = {}) {
     if (!value) return '';
 
     const {
@@ -49,13 +49,13 @@ export class Maskonha {
         } else {
           // Se não é número, pula esse caractere do valor e tenta o próximo para o mesmo '0'
           valueIdx++;
-          i--; 
+          i--;
         }
       } else if (maskChar === upper || maskChar === lower) {
         // Alfanumérico: aceita letras E números
         if (/[a-zA-Z0-9]/.test(valueChar)) {
-          masked += maskChar === upper 
-            ? valueChar.toUpperCase() 
+          masked += maskChar === upper
+            ? valueChar.toUpperCase()
             : valueChar.toLowerCase();
           valueIdx++;
         } else {
@@ -66,7 +66,7 @@ export class Maskonha {
       } else {
         // Caractere literal da máscara (ex: '.', '-', '(' )
         masked += maskChar;
-        
+
         // Ajuste importante: se o usuário digitou o próprio caractere literal, 
         // avançamos o ponteiro do valor para não duplicar ou desalinhar.
         if (valueChar === maskChar) {
@@ -81,8 +81,14 @@ export class Maskonha {
   /**
    * Remove caracteres especiais, mantendo apenas letras e números.
    */
-  static unmask(value) {
+  static unmask(value: string) {
     if (!value) return '';
     return value.toString().replace(/[^a-zA-Z0-9]/g, '');
   }
+}
+
+export interface MaskonhaOptions {
+  number?: string;
+  upper?: string;
+  lower?: string;
 }
