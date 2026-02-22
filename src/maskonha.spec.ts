@@ -1,7 +1,7 @@
-import { describe,  test, expect } from 'vitest'
+import { describe, test, expect } from 'vitest';
 import { Maskonha } from './maskonha';
 
-describe.skip('Maskonha Class - Regras de Case', () => {
+describe('Maskonha Class - Regras de Case', () => {
 
   describe('mask()', () => {
     test('deve forçar MAIÚSCULAS com o seletor "A"', () => {
@@ -62,7 +62,7 @@ describe.skip('Maskonha Class - Regras de Case', () => {
     data.forEach(({ input, pattern, expected }) => {
       const result = Maskonha.mask(input, pattern, { number: '9' });
       expect(result).toBe(expected);
-    })
-  })
+    });
+  });
 
-})
+});

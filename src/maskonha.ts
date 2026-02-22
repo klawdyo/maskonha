@@ -23,7 +23,7 @@ export class Maskonha {
    * 
    * É possível customizar os caracteres da máscara através do parâmetro de configurações.
    */
-  static mask(value: string, pattern: string, options: MaskonhaOptions = {}) {
+  static mask(value: string | null | undefined, pattern: string, options: MaskonhaOptions = {}) {
     if (!value) return '';
 
     const {
@@ -81,7 +81,7 @@ export class Maskonha {
   /**
    * Remove caracteres especiais, mantendo apenas letras e números.
    */
-  static unmask(value: string) {
+  static unmask(value: string | null | undefined) {
     if (!value) return '';
     return value.toString().replace(/[^a-zA-Z0-9]/g, '');
   }
