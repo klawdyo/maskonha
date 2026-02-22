@@ -2,13 +2,14 @@
   "name": "maskonha",
   "version": "0.0.1-alpha-1",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     }
   },
@@ -18,9 +19,9 @@
     "package.json"
   ],
   "scripts": {
-    "dev": "tsc --watch",
+    "dev": "tsup src/index.ts --format cjs,esm --watch --dts",
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsup src/index.ts --format cjs,esm --dts --clean",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build && npm run test"
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^25.3.0",
     "rimraf": "^6.1.3",
+    "tsup": "^8.4.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   }
